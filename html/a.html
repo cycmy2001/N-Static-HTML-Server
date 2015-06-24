@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="./res/jquery.js"></script>
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+        jQuery(function($) {
+            $('#loginBtn').on('click', function(e) {
+                var params ={
+                    password: $("#password").val()
+                };
+                $.ajax({
+                    async:false,
+                    type: "POST",
+                    dataType: "json",
+                    url: "/a/login.njs",
+                    data: params,
+                    traditional:true,
+                    success: function (data) {
+                        alert(data.name);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown){
+                        alert('error ' + textStatus + " " + errorThrown);
+                    }
+                });
+                e.preventDefault();
+            });
+        });
+</script>
+<img src="./res/favicon.ico">
+<input type="text" id="password" value="admin">
+<input type="button" id="loginBtn" value="login">
+</body>
+</html>
